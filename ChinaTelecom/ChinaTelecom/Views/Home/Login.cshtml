@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css/Login.css")
+</head>
+<body>
+    <section>
+        <div class="middle">
+            <div style="border-radius:15px;box-shadow:0px 0px 20px #e6dbdb">
+                <p>
+                    <img class="log_img" src="~/Content/image/Logo.png" />
+                </p>
+                <form action="@Url.Action("Login", "Home")" , method="post">
+                    <div class="text_title">登录</div>
+                    <div class="txt_div">
+                        <input type="text" name="userCode" value="@ViewBag.userCode" placeholder="账号、电子邮件、电话或 Skype。" />
+                        <label style="font-size:12px">@ViewBag.msg</label>
+                    </div>
+                    <div class="txt_div tv">
+                        <input type="password" name="userPwd" placeholder="密码、密钥" />
+                        <label></label>
+                    </div>
+                    <div class="reg_div">
+                        <span style="font-size:13px">没有帐户?<a href="@Url.Action("RegiUser","Home")">创建一个!</a></span>
+                    </div>
+                    <div>
+                        <input type="submit" value="登陆" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

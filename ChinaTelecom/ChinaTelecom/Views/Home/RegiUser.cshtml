@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegiUser</title>
+    @Styles.Render("~/Content/css/Login.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js")
+</head>
+<body>
+    <section>
+        <div class="middle">
+            <div style="min-height: 358px; border-radius: 15px; box-shadow: 0px 0px 20px #e6dbdb">
+                <p>
+                    <img class="log_img" src="~/Content/image/Logo.png" />
+                </p>
+                <form>
+                    <div class="text_title">注册</div>
+                    <div class="txt_div">
+                        <input type="text" placeholder="账号、电子邮件、电话或 Skype。" name="userCode" id="userCode" />
+                        <label id="lb1" style="font-size: 9px"></label>
+                    </div>
+                    <div class="txt_div tv">
+                        <input type="password" placeholder="密码、密钥" name="userPwd" id="userPwd" />
+                        <label id="lb2" style="font-size: 9px"></label>
+                    </div>
+                    <div class="txt_div tv">
+                        <input type="password" placeholder="再次确认密码、密钥" name="userPwdTwo" id="userPwdTwo" />
+                        <label id="lb3" style="font-size: 9px"></label>
+                    </div>
+                    <div class="reg_div">
+                        <span style="font-size: 13px">已有帐户?<a href="@Url.Action("Login", "Home")">立即登陆!</a></span>
+                    </div>
+                    <div>
+                        <div id="sub" style="height: 25px; width: 70px; background-color: #0067B8; color: white; cursor: pointer; text-align: center; float: right">注册</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        $(function () {
+            $("#userCode").blur(function () {
+                var val = $(this).val();
+                if (val != null && val != "" && val != undefined) {
+                    $.ajax({
+                        url: "@Url.Content("~/Home/RegiUser")",
+                        type: "post",
+                        data: { userName: val },
+                        success: function (e) {
+                            if (e == "1")
+                                $("#lb1").html("该用户名已经存在");
+                            else
+                                $("#lb1").html("");
+                        }
+                    });
+                }
+            });
+            $("#sub").click(function () {
+                var v1 = $("#userPwd").val();
+                var v2 = $("#userPwdTwo").val();
+                if (v1 == null || v1 == undefined || v1 == "") {
+                    $("#lb2").html("密码不能为空");
+                    return;
+                }
+                if (v2 == null || v2 == undefined || v2 == "") {
+                    $("#lb3").html("密码不能为空");
+                    return;
+                }
+                if (v1 != v2) {
+                    $("#lb2").html("两次密码不一致");
+                    $("#lb3").html("两次密码不一致");
+                    return;
+                }
+                $("#lb2").html("");
+                $("#lb3").html("");
+                if ($("#lb1").html() != undefined && $("#lb1").html() != null && $("#lb1").html() != "")
+                    return;
+                $.ajax({
+                    url: "@Url.Content("~/Home/AddUser")",
+                    type: "post",
+                    data: { userName: $("#userCode").val(), userPwd: v1 },
+                    success: function (e) {
+                        if (e == "-1")
+                            alert("系统服务器异常!请联系管理员...");
+                        else {
+                            alert("注册成功，请登录后再使用...");
+                            window.location.href = "@Url.Content("~/Home/Login")";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

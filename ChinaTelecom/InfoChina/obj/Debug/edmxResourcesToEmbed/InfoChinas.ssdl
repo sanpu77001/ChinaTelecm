@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChinaTelecomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ConstructionPersonnelTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BranchOffice" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Worknumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="int" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userCode" Type="varchar" MaxLength="50" />
+    <Property Name="userPwd" Type="varchar" MaxLength="50" />
+    <Property Name="lastTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserState">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stateName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ConstructionPersonnelTable_UserState">
+    <End Role="UserState" Type="Self.UserState" Multiplicity="0..1" />
+    <End Role="ConstructionPersonnelTable" Type="Self.ConstructionPersonnelTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserState">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConstructionPersonnelTable">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ChinaTelecomModelStoreContainer">
+    <EntitySet Name="ConstructionPersonnelTable" EntityType="Self.ConstructionPersonnelTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserState" EntityType="Self.UserState" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ConstructionPersonnelTable_UserState" Association="Self.FK_ConstructionPersonnelTable_UserState">
+      <End Role="UserState" EntitySet="UserState" />
+      <End Role="ConstructionPersonnelTable" EntitySet="ConstructionPersonnelTable" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

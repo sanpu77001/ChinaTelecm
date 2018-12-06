@@ -1,0 +1,235 @@
+﻿@{
+    Layout = null;
+}
+@using ChinaTelecom.Models
+@model UserList
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    @Styles.Render("~/Content/css/style.css",
+                   "~/Content/css/select.css",
+                   "~/Content/css/paging.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js",
+                    "~/Scripts/jquery.idTabs.min.js",
+                    "~/Scripts/select-ui.min.js",
+                    "~/Scripts/paging.js")
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+            $(".select3").uedSelect({
+                width: 152
+            });
+        });
+    </script>
+</head>
+
+<body class="sarchbody">
+
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">查看施工人员</a></li>
+        </ul>
+    </div>
+
+    <div class="formbody">
+        <div id="usual1" class="usual">
+            <ul class="seachform1">
+                <li>
+                    <label>工号</label><input name="" id="userCode" type="text" class="scinput1" />
+                </li>
+                <li>
+                    <label>施工人员</label><input name="" id="userName" type="text" class="scinput1" />
+                </li>
+                <li>
+                    <label>公司名</label>
+                    <div class="vocation">
+                        <select class="select3" id="gsm">
+                            @foreach (var item in Model.Company)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <ul class="seachform2">
+                <li>
+                    <label>分支局</label>
+                    <div class="vocation">
+                        <select class="select3" id="fzj">
+                            @foreach (var item in Model.BranchOffice)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <label>在职状态</label>
+                    <div class="vocation">
+                        <select class="select3" id="zzzt">
+                            <option value="0">全部</option>
+                            <option value="1">在职</option>
+                            <option value="2">离职</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <ul class="seachform1">
+                <li class="sarchbtn">
+                    <label>&nbsp;</label><input name="" id="serach" type="button" class="scbtn" value="查询" />
+                    <input name="" type="button" class="scbtn1" value="更多条件" />
+                    <input name="" type="button" class="scbtn2" value="导出" />
+                </li>
+            </ul>
+            <script language="javascript">
+                $(document).ready(function () {
+                    $(".scbtn1").click(function () {
+                        if ($(".seachform2").hasClass("hideclass")) {
+                            $(".seachform2").removeClass("hideClass");
+                        }
+                        else {
+                            $(".seachform2").addClass("hideClass");
+                        }
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".scbtn1").click(function () {
+                        $(".seachform2").fadeIn(200);
+                    });
+                });
+            </script>
+            <div class="formtitle"><span>项目列表</span></div>
+
+            <table class="tablelist">
+                <thead>
+                    <tr>
+                        <th>编号<i class="sort"><img src="../Content/image/px.gif" /></i></th>
+                        <th>公司</th>
+                        <th>分支局</th>
+                        <th>工号</th>
+                        <th>姓名</th>
+                        <th>在职状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="pagger" id="box"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#serach").click(function () {
+                var userCode = $.trim($("#userCode").val());
+                var userName = $.trim($("#userName").val());
+                var gsm = $.trim($("#gsm").val());
+                var fzj = $.trim($("#fzj").val());
+                var zzzt = $("#zzzt").val();
+                $.ajax({
+                    url: "@Url.Content("~/Home/SearchListFilter")",
+                    type: "post",
+                    data: {
+                        userCode: userCode,
+                        userName: userName,
+                        gsm: gsm,
+                        fzj: fzj,
+                        zzzt: zzzt
+                    },
+                    success: function (e) {
+                        show(e);
+                        var count = 0;
+                        var pageszie = 0;
+                        if (e.length > 0) {
+                            count = e[0].Count;
+                            pageszie = e[0].pageSize;
+                        }
+                        $('#box').paging({
+                            initPageNo: 1, // 初始页码
+                            totalPages: pageszie, //总页数
+                            totalCount: '合计' + count + '条数据', // 条目总数
+                            slideSpeed: 600, // 缓动速度。单位毫秒
+                            jump: true, //是否支持跳转
+                            callback: function (page) { // 回调函数
+                                if (page != pageIndex) {
+                                    $.ajax({
+                                        url: "@Url.Content("~/Home/SearchList")",
+                                        type: "post",
+                                        data: { pageIndex: page },
+                                        success: function (e) {
+                                            show(e);
+                                        }
+                                    });
+                                }
+                                pageIndex = page;
+                            }
+                        });
+                    }
+                })
+            });
+            //结束
+
+
+        });
+        function Update(oj) {
+            var num = $(oj).parent().parent().find("td").first().text();
+            var state = $(oj).parent().parent().find("td").eq(5).text();
+            $.post("/Home/UpdateState", { IDNum: num ,State:state}, function (e) {
+                if (e == -1)
+                    alert("修改失败,请联系管理员.");
+                if (e == 1)
+                {
+                    if (state == "在职")
+                        $(oj).parent().parent().find("td").eq(5).text("离职");
+                    else
+                        $(oj).parent().parent().find("td").eq(5).text("在职");
+                }
+                    
+            });
+        };
+        var pageIndex = -1;
+        var setTotalCount = 1000;
+        var html = "";
+        $('#box').paging({
+            initPageNo: 1, // 初始页码
+            totalPages: "@Model.pageSize", //总页数
+            totalCount: '合计' + @Model.Count + '条数据', // 条目总数
+            slideSpeed: 600, // 缓动速度。单位毫秒
+            jump: true, //是否支持跳转
+            callback: function (page) { // 回调函数
+                if (page != pageIndex) {
+                    $.ajax({
+                        url: "@Url.Content("~/Home/SearchList")",
+                        type: "post",
+                        data: { pageIndex: page },
+                        success: function (e) {
+                            show(e);
+                        }
+                    });
+                }
+                pageIndex = page;
+            }
+        });
+        function show(e) {
+            html = "";
+            for (var i = 0; i < e.length; i++) {
+                html += "<tr>";
+                html += "<td>" + e[i].ID + "</td>";
+                html += "<td>" + e[i].Company + "</td>";
+                html += "<td>" + e[i].BranchOffice + "</td>";
+                html += "<td>" + e[i].Worknumber + "</td>";
+                html += "<td>" + e[i].UserName + "</td>";
+                html += "<td>" + e[i].stateMsg + "</td>";
+                html += "<td><a class=\"tablink\" onclick=\"Update(this)\">修改</a>&nbsp;&nbsp;<a class=\"tablink\">删除</a></td>";
+                html += "</tr>";
+            }
+            $("tbody").html(html);
+        }
+    </script>
+</body>
+</html>

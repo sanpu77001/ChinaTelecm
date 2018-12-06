@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ChinaTelecomModelStoreContainer" CdmEntityContainer="ChinaTelecomEntities">
+    <EntitySetMapping Name="ConstructionPersonnelTable">
+      <EntityTypeMapping TypeName="ChinaTelecomModel.ConstructionPersonnelTable">
+        <MappingFragment StoreEntitySet="ConstructionPersonnelTable">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Worknumber" ColumnName="Worknumber" />
+          <ScalarProperty Name="BranchOffice" ColumnName="BranchOffice" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="ChinaTelecomModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="lastTime" ColumnName="lastTime" />
+          <ScalarProperty Name="userPwd" ColumnName="userPwd" />
+          <ScalarProperty Name="userCode" ColumnName="userCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserState">
+      <EntityTypeMapping TypeName="ChinaTelecomModel.UserState">
+        <MappingFragment StoreEntitySet="UserState">
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

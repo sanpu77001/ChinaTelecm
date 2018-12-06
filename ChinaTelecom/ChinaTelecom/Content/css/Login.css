@@ -1,0 +1,110 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Segoe UI","Helvetica Neue","Lucida Grande","Roboto","Ebrima","Nirmala UI","Gadugi","Segoe Xbox Symbol","Segoe UI Symbol","Khmer UI","Tunga","Lao UI","Raavi","Iskoola Pota","Latha","Leelawadee","Microsoft YaHei UI","Microsoft JhengHei UI","Malgun Gothic","Estrangelo Edessa","Microsoft Himalaya","Microsoft New Tai Lue","Microsoft PhagsPa","Microsoft Tai Le","Microsoft Yi Baiti","Mongolian Baiti","MV Boli","Myanmar Text","Cambria Math";
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+    body > section {
+        width: 100%;
+        height: 100%;
+        background-image: url("../Image/log_bg.jpg");
+        background-size: cover;
+        position: absolute;
+        display: table;
+        background-position: 0px 50%;
+    }
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+}
+
+    .middle > div {
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        max-width: 440px;
+        width: calc(100% - 40px);
+        padding: 44px;
+        margin-bottom: 28px;
+        background-color: #fff;
+        -webkit-box-shadow: 0 2px 3px rgba(0,0,0,.55);
+        -moz-box-shadow: 0 2px 3px rgba(0,0,0,.55);
+        box-shadow: 0 2px 3px rgba(0,0,0,.55);
+        border: 1px solid #818c94;
+        border: 1px solid rgba(0,0,0,.4);
+        min-width: 320px;
+        min-height: 338px;
+    }
+
+.text_title {
+    color: #404040;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 10px 0px 15px 0px;
+}
+
+.log_img {
+    max-width: 256px;
+    min-width: 115px;
+    height: 30px;
+    border: 0;
+}
+
+.txt_div {
+    position: relative;
+}
+
+    .txt_div > input[type="text"], .txt_div > input[type="password"] {
+        border: none;
+        border-bottom: solid #404040 1px;
+        width: 100%;
+        margin: 0px 20px 0px 0px;
+        color: #000000;
+        font-size: 15px;
+        padding-bottom: 5px;
+        outline: none;
+    }
+
+.tv {
+    margin-top: 15px;
+}
+
+a {
+    color: #0067B8;
+    text-decoration: none;
+}
+
+span {
+    font-size: 12px;
+}
+
+.reg_div {
+    margin-top: 15px;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    float: right;
+    width: 108px;
+    height: 32px;
+    background-color: #0067B8;
+    color: #ffffff;
+    border: none;
+    cursor:pointer;
+}
+
+label {
+    color: red;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}

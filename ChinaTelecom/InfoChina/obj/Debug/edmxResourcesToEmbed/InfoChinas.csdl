@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ChinaTelecomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ChinaTelecomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ConstructionPersonnelTable" EntityType="ChinaTelecomModel.ConstructionPersonnelTable" />
+    <EntitySet Name="Login" EntityType="ChinaTelecomModel.Login" />
+    <EntitySet Name="UserState" EntityType="ChinaTelecomModel.UserState" />
+    <AssociationSet Name="FK_ConstructionPersonnelTable_UserState" Association="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState">
+      <End Role="UserState" EntitySet="UserState" />
+      <End Role="ConstructionPersonnelTable" EntitySet="ConstructionPersonnelTable" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ConstructionPersonnelTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BranchOffice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Worknumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="Int32" />
+    <NavigationProperty Name="UserState" Relationship="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState" FromRole="ConstructionPersonnelTable" ToRole="UserState" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserState">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ConstructionPersonnelTable" Relationship="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState" FromRole="UserState" ToRole="ConstructionPersonnelTable" />
+  </EntityType>
+  <Association Name="FK_ConstructionPersonnelTable_UserState">
+    <End Type="ChinaTelecomModel.UserState" Role="UserState" Multiplicity="0..1" />
+    <End Type="ChinaTelecomModel.ConstructionPersonnelTable" Role="ConstructionPersonnelTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserState">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConstructionPersonnelTable">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

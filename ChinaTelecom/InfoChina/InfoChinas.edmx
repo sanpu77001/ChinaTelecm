@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChinaTelecomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConstructionPersonnelTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BranchOffice" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Worknumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="int" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userCode" Type="varchar" MaxLength="50" />
+          <Property Name="userPwd" Type="varchar" MaxLength="50" />
+          <Property Name="lastTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserState">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ConstructionPersonnelTable_UserState">
+          <End Role="UserState" Type="Self.UserState" Multiplicity="0..1" />
+          <End Role="ConstructionPersonnelTable" Type="Self.ConstructionPersonnelTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserState">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConstructionPersonnelTable">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChinaTelecomModelStoreContainer">
+          <EntitySet Name="ConstructionPersonnelTable" EntityType="Self.ConstructionPersonnelTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserState" EntityType="Self.UserState" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ConstructionPersonnelTable_UserState" Association="Self.FK_ConstructionPersonnelTable_UserState">
+            <End Role="UserState" EntitySet="UserState" />
+            <End Role="ConstructionPersonnelTable" EntitySet="ConstructionPersonnelTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChinaTelecomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ChinaTelecomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ConstructionPersonnelTable" EntityType="ChinaTelecomModel.ConstructionPersonnelTable" />
+          <EntitySet Name="Login" EntityType="ChinaTelecomModel.Login" />
+          <EntitySet Name="UserState" EntityType="ChinaTelecomModel.UserState" />
+          <AssociationSet Name="FK_ConstructionPersonnelTable_UserState" Association="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState">
+            <End Role="UserState" EntitySet="UserState" />
+            <End Role="ConstructionPersonnelTable" EntitySet="ConstructionPersonnelTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ConstructionPersonnelTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchOffice" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Worknumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Int32" />
+          <NavigationProperty Name="UserState" Relationship="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState" FromRole="ConstructionPersonnelTable" ToRole="UserState" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserState">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConstructionPersonnelTable" Relationship="ChinaTelecomModel.FK_ConstructionPersonnelTable_UserState" FromRole="UserState" ToRole="ConstructionPersonnelTable" />
+        </EntityType>
+        <Association Name="FK_ConstructionPersonnelTable_UserState">
+          <End Type="ChinaTelecomModel.UserState" Role="UserState" Multiplicity="0..1" />
+          <End Type="ChinaTelecomModel.ConstructionPersonnelTable" Role="ConstructionPersonnelTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserState">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ConstructionPersonnelTable">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChinaTelecomModelStoreContainer" CdmEntityContainer="ChinaTelecomEntities">
+          <EntitySetMapping Name="ConstructionPersonnelTable">
+            <EntityTypeMapping TypeName="ChinaTelecomModel.ConstructionPersonnelTable">
+              <MappingFragment StoreEntitySet="ConstructionPersonnelTable">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Worknumber" ColumnName="Worknumber" />
+                <ScalarProperty Name="BranchOffice" ColumnName="BranchOffice" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="ChinaTelecomModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="lastTime" ColumnName="lastTime" />
+                <ScalarProperty Name="userPwd" ColumnName="userPwd" />
+                <ScalarProperty Name="userCode" ColumnName="userCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserState">
+            <EntityTypeMapping TypeName="ChinaTelecomModel.UserState">
+              <MappingFragment StoreEntitySet="UserState">
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
