@@ -232,8 +232,14 @@ namespace ChinaTelecom.Controllers
             Session["list"] = list1;
             return Json(list1.Take(10).OrderBy(f => f.ID), JsonRequestBehavior.AllowGet);
         }
+        /// <summary>
+        /// 目前还有问题(sanpu)
+        /// </summary>
+        /// <param name="IDNum"></param>
+        /// <param name="State"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult UpdateState(string IDNum,string State)
+        public ActionResult UpdateState(string IDNum, string State)
         {
             try
             {
@@ -245,15 +251,75 @@ namespace ChinaTelecom.Controllers
                     list.State = 0;
                 }
                 else
-                    list.State = 1;       
+                    list.State = 1;
                 obj.SaveChanges();
             }
-            catch (Exception )
+            catch (Exception)
             {
 
                 return Content("-1");
-            }     
+            }
             return Content("1");
+        }
+        /// <summary>
+        /// 登录信息维护(界面)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult UpdateUserInfo()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 排名达标率(界面)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult RankingRate()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Excel基础数据导入(界面)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult ExeclBasicDataImport()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 查看透视数据(界面)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult PerspectiveData()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 查看分母数据(界面)
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult DenominatorData()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 查看排名数据
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult RankingData()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>设置排名达标率</title>
+    @Styles.Render("~/Content/css/style.css",
+                   "~/Content/css/select.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js",
+                    "~/Scripts/jquery.idTabs.min.js",
+                    "~/Scripts/select-ui.min.js",
+                    "~/Scripts/paging.js")
+    <script type="text/javascript">
+    $(document).ready(function (e) {
+        $(".select3").uedSelect({
+            width: 152
+        });
+    });
+    </script>
+</head>
+<body class="sarchbody">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">设置排名达标率</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div id="usual1" class="usual">            
+            <ul class="seachform1">
+                <li>
+                    <label>达标率类型</label>
+                    <div class="vocation">
+                        <select class="select3" id="gsm">
+                            <option value="0">催修</option>
+                            <option value="1">催装</option>
+                        </select>
+                    </div>
+                </li>
+                <li>
+                    <label>达标率</label><input name="" id="userCode" type="text" class="scinput1" /><i>%</i>
+                </li>          
+                <li><input name="" type="button" class="btn" value="修改" /></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

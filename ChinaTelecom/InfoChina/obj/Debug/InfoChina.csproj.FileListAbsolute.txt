@@ -8,3 +8,14 @@ C:\Users\77001\Desktop\MVC\中国电信\ChinaTelecom\InfoChina\bin\Debug\EntityF
 C:\Users\77001\Desktop\MVC\中国电信\ChinaTelecom\InfoChina\bin\Debug\zh-Hans\EntityFramework.resources.dll
 C:\Users\77001\Desktop\MVC\中国电信\ChinaTelecom\InfoChina\obj\Debug\InfoChina.dll
 C:\Users\77001\Desktop\MVC\中国电信\ChinaTelecom\InfoChina\obj\Debug\InfoChina.pdb
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\InfoChina.dll.config
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\InfoChina.dll
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\InfoChina.pdb
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\EntityFramework.dll
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\EntityFramework.SqlServer.dll
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\EntityFramework.xml
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\EntityFramework.SqlServer.xml
+D:\中国电信\ChinaTelecom\InfoChina\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\中国电信\ChinaTelecom\InfoChina\obj\Debug\InfoChina.csprojResolveAssemblyReference.cache
+D:\中国电信\ChinaTelecom\InfoChina\obj\Debug\InfoChina.dll
+D:\中国电信\ChinaTelecom\InfoChina\obj\Debug\InfoChina.pdb

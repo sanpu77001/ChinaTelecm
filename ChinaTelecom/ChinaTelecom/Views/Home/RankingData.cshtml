@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>importUser</title>
+    @Styles.Render("~/Content/css/style.css",
+                   "~/Content/css/select.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js",
+                    "~/Scripts/jquery.idTabs.min.js",
+                    "~/Scripts/select-ui.min.js")
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">查看排名数据</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div id="usual1" class="usual">
+            <div class="itab">
+                <ul>
+                    <li><a href="#tab1" class="selected">包区排名</a></li>
+                    <li><a href="#tab2">政企排名</a></li>
+                </ul>
+            </div>
+            <div id="tab1" class="tabson">
+                <div class="place">
+                    <span>位置：</span>
+                    <ul class="placeul">
+                        <li><i>主城区</i></li>                    
+                    </ul>
+                </div>
+                <table class="tablelist">
+                    <thead>
+                        <tr>
+                            <th>职业</th>
+                            <th>总排名</th>
+                            <th>公司</th>
+                            <th>分支局</th>
+                            <th>电视宽带催装率</th>
+                            <th>催装达标</th>
+                            <th>电视宽带催修率</th>
+                            <th>带催达标</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="8">这是第一个中的1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                @*---郊区---*@
+                <div class="place">
+                    <span>位置：</span>
+                    <ul class="placeul">
+                        <li><i>郊区</i></li>                    
+                    </ul>
+                </div>
+                <table class="tablelist">
+                    <thead>
+                        <tr>
+                            <th>职业</th>
+                            <th>总排名</th>
+                            <th>公司</th>
+                            <th>分支局</th>
+                            <th>电视宽带催装率</th>
+                            <th>催装达标</th>
+                            <th>电视宽带催修率</th>
+                            <th>带催达标</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="8">这是第一个中的2</td>
+                        </tr>
+                    </tbody>
+                </table>   
+            </div>
+            <div id="tab2" class="tabson">
+                <label>第二页</label>
+            </div>
+        </div>
+        <script type="text/javascript">
+      $("#usual1 ul").idTabs();
+        </script>
+        <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>

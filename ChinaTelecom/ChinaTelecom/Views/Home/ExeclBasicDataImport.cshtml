@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>importUser</title>
+    @Styles.Render("~/Content/css/style.css",
+                   "~/Content/css/select.css")
+    @Scripts.Render("~/Scripts/jquery-1.8.2.min.js",
+                    "~/Scripts/jquery.idTabs.min.js",
+                    "~/Scripts/select-ui.min.js")
+</head>
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">Excel基础数据导入</a></li>
+        </ul>
+    </div>
+    <div class="formtitle"><span>基础数据</span></div>
+    <table class="tablelist">
+        <thead>
+            <tr>
+                <th>批次号</th>
+                <th style="color: red">文件名</th>
+                <th>选择文件</th>
+                <th>上传时间</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>11111111111111</td>
+                <td>22222222222222</td>
+                <td>
+                    @*上传文件*@
+                    <input type="file" name="file1" id="file1" />
+                </td>
+                <td>44444444444444</td>
+                <td>55555555555555</td>
+            </tr>
+            <tr>
+                <td class="tablelink">操作</td>
+                <td colspan="4">
+                    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="上传" /><i>[上传成功]</i></li>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="formbody">
+        <div id="usual1" class="usual">
+            <div class="itab">
+                <ul>
+                    <li><a href="#tab1" class="selected">催修透视数据</a></li>
+                    <li><a href="#tab2">催装透视数据</a></li>
+                    <li><a href="#tab3">催修分母数据</a></li>
+                    <li><a href="#tab4">催装分母</a></li>
+                    <li><a href="#tab5">包区排名</a></li>
+                    <li><a href="#tab6">政企分局</a></li>
+                </ul>
+            </div>
+            <div id="tab1" class="tabson">
+
+                <table class="tablelist">
+                    <thead>
+                        <tr>
+                            <th>分公司</th>
+                            <th style="color: red">施工人</th>
+                            <th>0</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>空白</th>
+                            <th>总计</th>
+                            <th>加权</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">这是第一个</td>
+                        </tr>
+                    </tbody>
+                 </table>
+
+            </div>
+            <div id="tab2" class="tabson">
+                <label>第二页</label>     
+            </div>
+            <div id="tab3" class="tabson">
+                <label>第三页</label>
+            </div>
+            <div id="tab4" class="tabson">
+                <label>第四页</label>
+            </div>
+            <div id="tab5" class="tabson">
+                <label>第五页</label>
+            </div>
+            <div id="tab6" class="tabson">
+                <label>第五页</label>
+            </div>
+        </div>
+        <script type="text/javascript">
+      $("#usual1 ul").idTabs();
+        </script>
+        <script type="text/javascript">
+	$('.tablelist tbody tr:odd').addClass('odd');
+        </script>
+    </div>
+</body>
+</html>
